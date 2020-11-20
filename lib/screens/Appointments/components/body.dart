@@ -1,3 +1,4 @@
+import 'package:docport/constants.dart';
 import 'package:docport/screens/PatientData/patientdata.dart';
 import 'package:flutter/material.dart';
 
@@ -5,6 +6,7 @@ class Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      color: docButtonColor,
       child: Card(
         child: Column(
           children: [
@@ -24,7 +26,7 @@ class Body extends StatelessWidget {
                         TextButton(
                           child: const Text('Request Data'),
                           onPressed: () {
-                            Navigator.pushNamed(context, PatientData.routeName);
+
                           },
                         ),
                         const SizedBox(width: 8),

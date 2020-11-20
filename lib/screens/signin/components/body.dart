@@ -1,5 +1,7 @@
 import 'dart:convert';
-
+import 'package:docport/constants.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:docport/screens/doclist/doclistscreen.dart';
 import 'package:docport/screens/splash/components/body.dart';
 import 'package:docport/size_config.dart';
@@ -7,6 +9,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:docport/apis.dart';
 
 final healthidcontroller = TextEditingController();
 final passwordcontroller = TextEditingController();
@@ -21,6 +24,7 @@ class _BodyState extends State<Body> {
   bool _obscuretext = true;
   String healthid;
   String password;
+  bool _visibility = false;
 
   void toggle() {
     setState(() {
@@ -44,13 +48,14 @@ class _BodyState extends State<Body> {
               "Welcome Back",
               textAlign: TextAlign.center,
               style: TextStyle(
-                  color: Colors.black,
+                  color: Colors.white,
                   fontSize: getProportionateScreenWidth(28),
                   fontWeight: FontWeight.bold),
             ),
             Text(
               "Sign In with your Health ID and password",
               textAlign: TextAlign.center,
+              style: TextStyle(color: CupertinoColors.lightBackgroundGray),
             ),
             SizedBox(
               height: getProportionateScreenHeight(100),
@@ -63,13 +68,16 @@ class _BodyState extends State<Body> {
                     controller: healthidcontroller,
                     keyboardType: TextInputType.text,
                     autofocus: true,
+                    style: TextStyle(color: docButtonColor),
                     decoration: InputDecoration(
                       labelText: "Health ID",
                       hintText: "example@sbx",
+                      hintStyle: TextStyle(color: docButtonColor),
+                      labelStyle: TextStyle(color: buttonColor),
                       floatingLabelBehavior: FloatingLabelBehavior.always,
                       suffixIcon: Icon(
                         Icons.alternate_email,
-                        color: Colors.lightBlue,
+                        color: buttonColor,
                       ),
                     ),
                   ),
@@ -79,26 +87,30 @@ class _BodyState extends State<Body> {
                   TextFormField(
                     controller: passwordcontroller,
                     obscureText: _obscuretext,
+                    style: TextStyle(color: docButtonColor),
                     decoration: InputDecoration(
                       labelText: "Password",
                       hintText: "Enter Your Password",
+                      hintStyle: TextStyle(color: docButtonColor),
+                      labelStyle: TextStyle(color: buttonColor),
+
                       floatingLabelBehavior: FloatingLabelBehavior.always,
                       suffixIcon: IconButton(
                         onPressed: toggle,
                         icon: Icon(
                           Icons.remove_red_eye,
                         ),
-                        color: Colors.lightBlue,
+                        color: buttonColor,
                       ),
                     ),
                   ),
                   SizedBox(height: getProportionateScreenHeight(10)),
                   Row(children: [
-                    Icon(Icons.error),
+                    Icon(Icons.error,color: Colors.white,),
                     SizedBox(
                       width: getProportionateScreenWidth(10),
                     ),
-                    Text(error)
+                    Text(error,style: TextStyle(color: CupertinoColors.extraLightBackgroundGray),)
                   ])
                 ],
               ),
@@ -109,13 +121,15 @@ class _BodyState extends State<Body> {
             DefaultButton("Sign in", () {
               check();
             }),
+            SizedBox(height: getProportionateScreenHeight(30),),
+            Visibility(visible: _visibility,child: SpinKitWave(color: buttonColor,size: getProportionateScreenHeight(40),),replacement: SizedBox(height: getProportionateScreenHeight(40),),),
             SizedBox(height: getProportionateScreenHeight(50)),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Text("Don't have an account?",
                     style:
-                        TextStyle(fontSize: getProportionateScreenWidth(16))),
+                        TextStyle(fontSize: getProportionateScreenWidth(16),color: CupertinoColors.lightBackgroundGray)),
                 RichText(
                   text: TextSpan(
                     text: "Sign Up",
@@ -136,7 +150,7 @@ class _BodyState extends State<Body> {
     );
   }
 
-  void check()  {
+  void check()  async{
     if (healthidcontroller.text.isEmpty) {
       setState(() {
         error = "Please enter your email";
@@ -149,9 +163,18 @@ class _BodyState extends State<Body> {
       });
       return;
     }
-    // Response response = await post('https://dev.ndhm.gov.in/gateway/v0.5/sessions',headers: {'Content-Type':'application/json'},body: jsonEncode({"clientId": "SBX_000137",
-    //   "clientSecret": "a66dc1a4-793c-4f79-9945-cdfc88c979c6"}));
-    // print(response.body);
+    setState(() {
+      _visibility=true;
+    });
+    bool authorized = await auth(healthidcontroller.text,passwordcontroller.text);
+    if(authorized==false){
+      setState(() {
+        error="Check your Credentials";
+        _visibility=false;
+      });
+      return;
+    }
+    // await Future.delayed(Duration(seconds: 5));
     Navigator.pushNamed(context, DocList.routeName);
   }
 }

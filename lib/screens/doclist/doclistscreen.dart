@@ -1,3 +1,6 @@
+import 'package:docport/apis.dart';
+import 'package:docport/constants.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:docport/screens/doclist/doc.dart';
 import 'package:docport/screens/bookappointment/book.dart';
@@ -5,13 +8,17 @@ import 'package:flutter_dropdown/flutter_dropdown.dart';
 
 class DocList extends StatelessWidget {
   static String routeName = "/signinscreen/doclist";
+
+  String name = getUserName();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Find A Doctor",style:TextStyle(fontSize: 20)),centerTitle: true),
+      backgroundColor: backgroundColor,
+      appBar: AppBar(title: Text("Welcome",style:TextStyle(fontSize: 20)),centerTitle: true,backgroundColor: appBarColor,),
       body: DocListBody(),
     );
   }
+
 }
 
 
@@ -35,8 +42,8 @@ class _DocListBodyState extends State<DocListBody> {
 
   @override
   void initState() {
-    super.initState();
     createlist();
+    super.initState();
   }
 
   @override
@@ -44,33 +51,36 @@ class _DocListBodyState extends State<DocListBody> {
     return Column(
       children: <Widget>[
         Padding(
-          padding: const EdgeInsets.fromLTRB(20.0,8.0,0,10.0),
-          child: Row(
-            children: [
-                    DropDown<String>(
-                      items: <String>["Nicobar", "Andaman", "Puducherry"],
-                      initialValue: "Nicobar",
-                      hint: Text("Select City"),
-                      onChanged: (String value) {
-                        // setState(() {print(value);});
-                        }
-                    ),
-                    DropDown<String>(
-                      items: <String>["MD", "MBBS", "BEMS"],
-                      
-                      hint: Text("Qualification"),
-                      onChanged: (String value) {
-                        // setState(() {print(value);});
-                        }
-                    ),
-                    DropDown<String>(
-                      items: <String>["Cardiologist", "Dermatlogist", "Family Physician"],
-                      hint: Text("Specialisation"),
-                      onChanged: (String value) {
-                        // setState(() {print(value);});
-                        }
-                    ),
-            ],
+          padding: const EdgeInsets.fromLTRB(20.0,8.0,20.0,10.0),
+          child: Container(
+            color: docButtonColor,
+            child: Row(
+              children: [
+                      DropDown<String>(
+                        items: <String>["Nicobar", "Andaman", "Puducherry"],
+                        initialValue: "Nicobar",
+                        hint: Text("Select City",),
+                        onChanged: (String value) {
+                          // setState(() {print(value);});
+                          }
+                      ),
+                      DropDown<String>(
+                        items: <String>["MD", "MBBS", "BEMS"],
+
+                        hint: Text("Qualification"),
+                        onChanged: (String value) {
+                          // setState(() {print(value);});
+                          }
+                      ),
+                      DropDown<String>(
+                        items: <String>["Cardiologist", "Dermatlogist", "Family Physician"],
+                        hint: Text("Specialisation"),
+                        onChanged: (String value) {
+                          // setState(() {print(value);});
+                          }
+                      ),
+              ],
+            ),
           ),
         ),
         Expanded(
@@ -82,8 +92,9 @@ class _DocListBodyState extends State<DocListBody> {
                 child: Column(
                   children: [
                     ListTile(
+                      tileColor: docButtonColor,
                       onTap: () {
-
+                        Navigator.pushNamed(context, BookAppointment.routeName);
                       },
                       title: Text(docs[index].name),
                       subtitle: Text(docs[index].qualifications),
@@ -93,17 +104,20 @@ class _DocListBodyState extends State<DocListBody> {
                       trailing: IconButton(icon: Icon(Icons.favorite_border), onPressed: null),
 
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                        children:<Widget>[
-                        const SizedBox(width: 8),
-                        TextButton(
-                          child: const Text('View Profile'),
-                          onPressed: () {
-                            Navigator.pushReplacementNamed(context, BookAppointment.routeName);
-                          },
-                        ),
-                        const SizedBox(width: 8),],
+                    Container(
+                      color: docButtonColor,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                          children:<Widget>[
+                          const SizedBox(width: 8),
+                          TextButton(
+                            child: Text('View Profile',style: TextStyle(color: CupertinoColors.extraLightBackgroundGray),),
+                            onPressed: () {
+                              Navigator.pushNamed(context, BookAppointment.routeName);
+                            },
+                          ),
+                          const SizedBox(width: 8),],
+                      ),
                     )
                   ],
                 ),

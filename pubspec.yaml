@@ -34,6 +34,8 @@ dependencies:
   date_picker_timeline: ^1.2.1
   flutter_dropdown: ^0.0.8 # Easy dropdown
   http: ^0.12.2 #For http requests
+  flutter_spinkit: "^4.1.2" # For spinners
+  f_datetimerangepicker: ^0.1.3 # time
 
 dev_dependencies:
   flutter_test:

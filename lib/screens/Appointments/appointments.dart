@@ -1,3 +1,4 @@
+import 'package:docport/constants.dart';
 import 'package:docport/screens/Appointments/components/body.dart';
 import 'package:flutter/material.dart';
 
@@ -6,7 +7,8 @@ class Appointments extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Appointments"),centerTitle: true,backgroundColor: Colors.orange,),
+      backgroundColor: docButtonColor,
+      appBar: AppBar(title: Text("Appointments"),centerTitle: true,backgroundColor: appBarColor,),
       body: Body(),
     );
   }
