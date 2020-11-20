@@ -50,7 +50,7 @@ class _DocListBodyState extends State<DocListBody> {
     return Column(
       children: <Widget>[
         Padding(
-          padding: const EdgeInsets.fromLTRB(20.0,8.0,20.0,10.0),
+          padding: const EdgeInsets.fromLTRB( 20.0,8.0,0,10.0),
           child: Container(
             color: docButtonColor,
             child: Row(
