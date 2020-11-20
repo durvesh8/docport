@@ -1,16 +1,11 @@
-# docport
+# DocPort
 
-A new Flutter application.
+Finding the best healthcare provider and making the appointment process convenient.
 
-## Getting Started
+## Description
 
-This project is a starting point for a Flutter application.
+India is a diverse country and now in this tough time where the entire country is fighting with a deadly virus, it has become difficult for the senior citizens and the little ones to move out even for a regular health checkup. This app is a small initiative made by Team DOT to help not only them but all age groups to avoid physically going and waiting in queues for a regular check-up. By using DOCPORT, patients/healthcare seekers will be able to book appointments to visit their trusted doctors and avoid the long crowded queue for safety purposes.
 
-A few resources to get you started if this is your first Flutter project:
+Presently, finding the right doctor is based on word of mouth and a patient cannot know beforehand which doctor is suitable for them. To solve this, our app makes it easy to find the right healthcare provider for the user and makes the appointment process easy.
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+With the help of NDHM APIs, the doctor has easy access to the patient's health records using DocPort.
