@@ -9,7 +9,6 @@ import 'package:flutter_dropdown/flutter_dropdown.dart';
 class DocList extends StatelessWidget {
   static String routeName = "/signinscreen/doclist";
 
-  String name = getUserName();
   @override
   Widget build(BuildContext context) {
     return Scaffold(

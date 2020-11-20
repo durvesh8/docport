@@ -11,7 +11,7 @@ class SplashScreen extends StatelessWidget {
     SizeConfig().init(context);
     return Scaffold(
       backgroundColor: backgroundColor,
-      appBar: AppBar(centerTitle: true,title: Text("DocPort"),backgroundColor: appBarColor,),
+      appBar: AppBar(centerTitle: true,leading: Image.asset('assets/icons/launcher.png'),title: Text("DocPort"),backgroundColor: appBarColor,),
       body: Body(),
     );
   }

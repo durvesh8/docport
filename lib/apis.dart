@@ -65,6 +65,3 @@ String yearOfBirth;
   User(this.healthIdNumber,this.healthId,this.mobile,this.firstName,this.name,this.yearOfBirth);
 }
 
-String getUserName(){
-  return user.name;
-}
