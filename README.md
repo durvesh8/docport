@@ -1,5 +1,5 @@
 # DocPort
-
+<p align="center"><img src="data/logo.png"\></p>
 Finding the best healthcare provider and making the appointment process convenient.
 
 ## Description
@@ -9,3 +9,6 @@ India is a diverse country and now in this tough time where the entire country i
 Presently, finding the right doctor is based on word of mouth and a patient cannot know beforehand which doctor is suitable for them. To solve this, our app makes it easy to find the right healthcare provider for the user and makes the appointment process easy.
 
 With the help of NDHM APIs, the doctor has easy access to the patient's health records using DocPort.
+
+## Screenshots
+
