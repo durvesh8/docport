@@ -12,3 +12,10 @@ With the help of NDHM APIs, the doctor has easy access to the patient's health r
 
 ## Screenshots
 
+<p align="center">
+  <img src="data/ss1.jpeg" width=300\>
+  <img src="data/ss2.jpeg" width=300\>
+  <br>
+  <img src="data/ss3.jpeg" width=300\>
+  <img src="data/ss4.jpeg" width=300\>
+</p>
